@@ -34,7 +34,7 @@ class App:
                     result = self.command_handler.execute_command(command_input, a, b, history_)
                     print(f"Result: {result}")
                 elif command_input == 'exit':
-                    self.command_handler.execute_command(command_input)
+                    self.command_handler.execute_command(command_input, history_)
                 else:
                     raise ValueError(f"Unknown Command: {command_input}")
             except Exception as e:

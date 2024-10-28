@@ -1,0 +1,6 @@
+Operation,Operand1,Operand2,Result
+Add,4,3,7
+Add,3,4,7
+Add,3,4,7
+Subtract,4,5,-1
+Multiply,10,32,320
