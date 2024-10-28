@@ -7,11 +7,11 @@ and ExitCommand. Each test ensures that the commands behave as expected
 when executed with various inputs.
 """
 import pytest
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.divide import DivideCommand
-from app.commands.exit import ExitCommand
+from app.plugins.add import AddCommand
+from app.plugins.subtract import SubtractCommand
+from app.plugins.multiply import MultiplyCommand
+from app.plugins.divide import DivideCommand
+from app.plugins.exit import ExitCommand
 
 def test_add_command():
     """
@@ -55,8 +55,8 @@ def test_dividebyzero():
     Verifies that the divide command raises a ValueError when attempting to divide by zero.
     """
     command = DivideCommand()
-    with pytest.raises(ValueError, match="The DivideByZero Exception Occured"):
-        command.execute(10, 0)
+    result = command.execute(10,0)
+    assert result == "The DivideByZero Exception Occured"
 
 def test_exit_command():
     """

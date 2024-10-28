@@ -7,5 +7,5 @@ class DivideCommand(Command):
         if b != 0:
             return a / b
         else:
-            raise ValueError("The DivideByZero Exception Occured")
+            return "The DivideByZero Exception Occured"
         
