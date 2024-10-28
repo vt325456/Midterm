@@ -7,20 +7,25 @@ and ExitCommand. Each test ensures that the commands behave as expected
 when executed with various inputs.
 """
 import pytest
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.divide import DivideCommand
-from app.commands.exit import ExitCommand
+from app.plugins.add import AddCommand
+from app.plugins.subtract import SubtractCommand
+from app.plugins.multiply import MultiplyCommand
+from app.plugins.divide import DivideCommand
+from app.plugins.exit import ExitCommand
+from app.history import HistoryManager
 
+history_ = HistoryManager()
 def test_add_command():
     """
     Test the execution of the AddCommand.
     Verifies that the add command correctly adds two numbers.
     """
     command = AddCommand()
-    result = command.execute(10, 5)
+    result = command.execute(10, 5, history_)
     assert result == 15, f"Expected 15, Wrong Result {result}"
+    history = history_.get_history()
+    assert len(history) == 1, "Expected history to have 1 entry"
+
 
 def test_subtract_command():
     """
@@ -28,8 +33,10 @@ def test_subtract_command():
     Verifies that the subtract command correctly subtracts the second number from the first.
     """
     command = SubtractCommand()
-    result = command.execute(5, 3)
+    result = command.execute(5, 3, history_)
     assert result == 2, f"Expected 2, Wrong Result {result}"
+    history = history_.get_history()
+    assert len(history) == 2, "Expected history to have 1 entry"
 
 def test_multiply_command():
     """
@@ -37,8 +44,10 @@ def test_multiply_command():
     Verifies that the multiply command correctly multiplies two numbers.
     """
     command = MultiplyCommand()
-    result = command.execute(5, 5)
+    result = command.execute(5, 5, history_)
     assert result == 25, f"Expected 25, Wrong Result {result}"
+    history = history_.get_history()
+    assert len(history) == 3, "Expected history to have 1 entry"
 
 def test_divide_command():
     """
@@ -46,8 +55,10 @@ def test_divide_command():
     Verifies that the divide command correctly divides the first number by the second.
     """
     command = DivideCommand()
-    result = command.execute(25, 5)
+    result = command.execute(25, 5, history_)
     assert result == 5, f"Expected 5, Wrong Result {result}"
+    history = history_.get_history()
+    assert len(history) == 4, "Expected history to have 1 entry"
 
 def test_dividebyzero():
     """
@@ -55,8 +66,8 @@ def test_dividebyzero():
     Verifies that the divide command raises a ValueError when attempting to divide by zero.
     """
     command = DivideCommand()
-    with pytest.raises(ValueError, match="The DivideByZero Exception Occured"):
-        command.execute(10, 0)
+    result = command.execute(10,0, history_)
+    assert result == "The DivideByZero Exception Occured"
 
 def test_exit_command():
     """
@@ -65,4 +76,4 @@ def test_exit_command():
     """
     command = ExitCommand()
     with pytest.raises(SystemExit):
-        command.execute()
+        command.execute(history_)
