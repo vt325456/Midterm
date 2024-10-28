@@ -2,10 +2,12 @@ import pkgutil
 import importlib
 from app.commands import CommandHandler
 from app.commands import Command
+from app.history import HistoryManager
 
 class App:
     def __init__(self):
         self.command_handler = CommandHandler()
+        self.history_manager = HistoryManager()
 
     def load_plugins(self):
         plugins_package = 'app.plugins'
@@ -22,18 +24,19 @@ class App:
     def run(self):
         self.load_plugins()
         print("MID TERM \nWelcome to the Advanced Calculator")
+        history_ = self.history_manager
         while True:
             command_input = input("Enter a command to execute \nAdd  Subtract  Multiply  Divide  Exit\n").strip().lower()
-            
-            if command_input in self.command_handler.commands and command_input!= 'exit':
-                a = int(input("Enter a:"))
-                b = int(input("Enter b:"))
-                print(command_input)
-                print(a)
-                print(b)
-                result = self.command_handler.execute_command(command_input, a, b)
-                print(f"Result: {result}")
-            elif command_input == 'exit':
-                self.command_handler.execute_command(command_input)
-            else:
-                print(f"Unknown Command: {command_input}")
+            try:
+                if command_input in self.command_handler.commands and command_input!= 'exit':
+                    a = int(input("Enter a:"))
+                    b = int(input("Enter b:"))
+                    result = self.command_handler.execute_command(command_input, a, b, history_)
+                    print(f"Result: {result}")
+                elif command_input == 'exit':
+                    self.command_handler.execute_command(command_input)
+                else:
+                    raise ValueError(f"Unknown Command: {command_input}")
+            except Exception as e:
+                print(f"Error: {e}")
+
