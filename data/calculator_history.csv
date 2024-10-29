@@ -109,3 +109,7 @@ Multiply,5,5,25.0
 Divide,25,5,5.0
 Add,10,5,15
 Subtract,10,3,7
+Add,4,3,7.0
+Subtract,10,4,6.0
+Multiply,42,3,126.0
+Divide,126,42,3.0

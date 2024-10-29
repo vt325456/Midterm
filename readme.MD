@@ -1,98 +1,106 @@
-# MidTerm - Advanced Python Calculator
+# MidTerm - Python Based REPL calculator
 
-This project will implement a Python-based REPL (Read-Eval-Print Loop) calculator that will explain modern software engineering principles using plugin architecture and design patterns. This project is built using Command Pattern and a plugin-based system. This calculator will support basic arithmetic operations along with maintaining calculation history using Pandas integration. Because each activity appears as an individual command, the application's  design allows simple functionality extension through plugins, supporting loose coupling and maintainable code. Important features include continuous integration using GitHub Actions, extensive error handling, unit testing with pytest, and durable storage of calculation history in CSV format. The solution serves as a great example of how to create software applications that are expandable, maintainable, and thoroughly tested by showing the practical application of software design principles such as environment variable configuration, strong logging, and a plugin architecture.
-
+Welcome to the Python REPL Calculator Project, an extensible calculator showcasing key software engineering principles. Utilizing a modular architecture and the Command Pattern, it supports fundamental arithmetic operations and dynamic plugin integration. The project emphasizes clean code, robust error handling, and detailed logging, while enabling users to track calculations and export history to CSV via Pandas. Designed with scalability in mind, it incorporates CI/CD practices using GitHub Actions and environment variable configuration. A comprehensive test suite built with pytest ensures thorough validation, making this project an excellent resource for both developers and users seeking a versatile calculation tool.
 
 ## Branches
-Based on the project requirements, the branches in the repository are:
-- **master**: This is the main branch containing all the core functionality which will contain the complete implementation of:
-    - REPL calculator interface
-    - Basic arithmetic operations (Add, Subtract, Multiply, Divide)
-    - History management with Pandas
-    - Plugin system 
-    - CSV export functionality
-    - Logging system
-    - Test suite
-- **commands**: This branch is specifically focused on implementing different command classes. Dedicated to the Command Pattern implementation. Contains the command-specific code for :
-    - AddCommand
-    - SubtractCommand
-    - MultiplyCommand
-    - DivideCommand
-    - ExitCommand
-- **plugins**: 
-    - Dedicated to the implementation and management of the plugin system
-    - Likely contains code for dynamically loading and managing calculator plugins
-    - May include the framework for adding new features as plugins
-    - Work on this branch when developing or improving the plugin architecture
-- **Logging**: 
-    - Focus on implementing or improving logging functionality
-    - May contain enhancements to the existing logging setup
-    - Use this branch for adding more detailed logs, log rotation, or other logging features
-- **History**:
-    - The history branch in this REPL Calculator project focuses on managing calculation history and CSV export functionality. 
-    - It features a HistoryManager class that tracks operations, operands, and results, allowing easy addition and retrieval of history entries. 
-    - The CsvCommand class handles exporting this history to a CSV file, supporting both new file creation and appending to existing files.
-    - This branch integrates with the main calculator operations, ensuring each calculation is recorded.
-    - It also interfaces with the exit command, offering users the option to save their session history.
-    - The branch includes comprehensive testing for both history management and CSV export features, ensuring reliability and data integrity.
+
+
+1. **master**
+    - ***purpose:*** This is the main branch containing the core implementation of the REPL calculator.
+    - ***Functionality***:
+        - User interface for user interaction.
+        - Basic arithmetic operations: addition, subtraction, multiplication, and division.
+        - History management using the Pandas library.
+        - Plugin system for dynamic command integration.
+        - CSV export functionality for calculation history.
+        - Logging for tracking operations and errors.
+        - Includes the complete test suite to validate core features.
+
+2. **development**: 
+    - ***purpose:*** Serves as a staging area for integrating new features or updates before merging them into the master branch.
+    - ***Functionality***:
+        - Collects and tests code changes from various feature branches (e.g., commands, plugins, history, logging).
+        - Ensures stability and compatibility of new functionalities.
+        - Helps maintain a clean and reliable master branch while allowing ongoing development.
+
+3. **commands**: 
+    - ***Purpose***: Dedicated to implementing the Command Pattern for arithmetic operations.
+    - ***Functionality***:
+        - Contains command classes such as:
+            - *AddCommand*: Handles addition operations.
+            - *SubtractCommand*: Handles subtraction operations.
+            - *MultiplyCommand*: Handles multiplication operations.
+            - *DivideCommand*: Handles division operations.
+            - *ExitCommand*: Manages the exit functionality.
+            - Facilitates easy management and extension of command-specific code.
+
+4. **plugins**: 
+    - ***Purpose***: Manages the plugin architecture of the calculator.
+    - ***Functionality***:
+        - Handles the dynamic loading of new commands and features.
+        - Provides a modular framework for adding and managing plugins.
+        - All plugins are stored in the app/plugins/ directory for easy access and organization.
+
+5. **logging**: 
+    - ***Purpose***: Focuses on implementing or enhancing the logging system of the calculator.
+    - ***Functionality***:
+        - Implements detailed log tracking and error monitoring.
+        - Configures logging levels and manages log files.
+        - May include features like log rotation and more granular logging information to improve traceability.
+
+6. **history**: 
+    - ***Purpose:*** Manages the recording and exporting of calculation history.
+    - ***Functionality:***
+        - Includes a HistoryManager class for tracking operations, operands, and results.
+        - Implements a CsvCommand class for exporting calculation history to CSV files.
+        - Ensures that each calculation is recorded and allows users to save their session history upon exiting.
+        - Contains comprehensive testing for history management and CSV export functionality.
 
 ## Features
 
-### 1. Basic Arithmetic Operations
-- Addition (AddCommand)
-- Subtraction (SubtractCommand)
-- Multiplication (MultiplyCommand)
-- Division (DivideCommand)
-- Error handling for cases like division by zero
+1. **Basic Arithmetic Operations**  
+   The calculator provides essential arithmetic functions, including addition, subtraction, multiplication, and division. Each of these operations is implemented using the Command Pattern, which allows for clean separation and management of individual commands. The design ensures that extending or modifying these operations is straightforward, promoting loose coupling and maintainable code. Additionally, error handling is robust, particularly in scenarios such as division by zero, where the application gracefully alerts the user to input issues without crashing.
 
-### 2. History Management
-- Automatic tracking of all calculations
-- Operation type, operands, and results storage
-- View calculation history
-- Export history to CSV file
-- Optional history saving on exit
+2. **History Management & CSV Export**  
+   The application automatically tracks all calculations performed during a session. It maintains a detailed record of each operation, including the operation type, operands, and results. This data is managed using the Pandas library, allowing for efficient storage and retrieval. Upon exiting, the user is prompted to save the session history to a CSV file. This feature ensures that calculations can be easily referenced or reused later. The CSV export is flexible, supporting both new file creation and appending to existing files, with a consistent file structure to enhance readability and future data analysis.
 
-### 3. Plugin System
-- Dynamic command loading
-- Modular architecture
-- Extensible operation support
-- Organized plugin structure in `app/plugins/`
+3. **Plugin-Based System**  
+   The calculator’s architecture is designed with extensibility in mind, leveraging a plugin-based system to support new commands or features. This modular approach enables dynamic loading of plugins stored within a dedicated directory (`app/plugins/`). The plugin architecture ensures that new functionalities can be integrated without modifying the core codebase, allowing for continuous enhancement and scalability. This design demonstrates practical implementation of software engineering principles like loose coupling, inversion of control, and dependency injection, fostering maintainable and easily extendable code.
 
-### 4. REPL Interface
-- Interactive command-line interface
-- User-friendly input prompts
-- Clear result display
-- Exit command with save options
+4. **REPL Interface**  
+   The calculator features a Read-Eval-Print Loop (REPL) interface that allows for an interactive and user-friendly experience. It prompts users to select an operation and enter the required numbers, and then displays the results in a clear and concise manner. The REPL interface also offers a menu to guide users through the available commands and provides a simple exit command with optional history saving. This interactive design not only enhances usability but also showcases how REPL implementations can be applied to real-world software projects.
 
-### 5. Logging System
-- Comprehensive operation logging
-- Error tracking and debugging
-- Configurable logging levels
-- Log file management
+5. **Logging & Debugging**  
+   A comprehensive logging system is integrated into the application to track all operations and handle error situations. The logging system is configurable and supports different logging levels for debugging, warnings, and critical issues. This helps in pinpointing problems quickly and monitoring the application’s behavior over time. By implementing strong logging practices, the project emphasizes the importance of tracking the internal state and operational flow, which aids in debugging and long-term maintenance.
 
-## Workflow Details
+## CI/CD Workflow Overview
 
-The CI/CD pipeline performs the following steps:
+Our Continuous Integration and Continuous Deployment (CI/CD) github workflow is designed to streamline development and ensure the highest quality of our code. Here’s what it does:
 
 1. **Environment Setup**:
-   - Runs on the latest Ubuntu environment
-   - Sets up Python 3.10
+   - The github workflow operates on the latest Ubuntu environment, ensuring a modern and stable foundation for our project.
+   - It sets up Python 3.10, providing the necessary runtime for our application.
 
 2. **Dependency Installation**:
-   - Upgrades pip to the latest version
-   - Installs `flake8` and `pytest`
-   - Installs all dependencies listed in `requirements.txt` (if present)
+   - Automatically upgrades `pip` to the latest version, ensuring that we have the most up-to-date package management tools.
+   - Installs essential development tools, including:
+     - `flake8`: Enforces coding standards and style guidelines.
+     - `pytest`: A robust framework for running our unit tests.
+   - Installs all project dependencies specified in `requirements.txt`, ensuring that our environment is fully prepared for development and testing.
 
 3. **Testing**:
-   - Runs pytest for unit testing
-   - Executes pytest with pylint for code quality checks
-   - Performs test coverage analysis using pytest and coverage
+   - Executes unit tests using `pytest`, validating that our application behaves as expected.
+   - Conducts code quality checks with `pylint`, helping us maintain clean and readable code.
+   - Performs test coverage analysis using `pytest` and `coverage`, allowing us to measure how much of our code is tested and identify areas for improvement.
 
-## Setup Instructions
+This automated github workflow not only enhances our development efficiency but also ensures that we maintain high standards of code quality and reliability throughout the project lifecycle. By integrating these processes, we can focus on delivering exceptional features while minimizing the risk of bugs and regressions.
+
+
+## Instructions for setting up:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/SamuelSudeepAyyala/Midterm.git
+    git clone git@github.com:vt325456/Midterm.git
     ```
 
 2. Navigate to the project directory:
@@ -119,21 +127,64 @@ The CI/CD pipeline performs the following steps:
     python main.py
     ```
 
-6. **Execute a command:**
-    The program will prompt for user input. For example, to add two numbers:
-    ```
-    Type 'menu' to show menu
-    Type 'exit' to exit 
-    >>> menu
-    Welcome to the Basic Calcualator.
-    Select the operation to be performed
-    Add
-    Subtract
-    Multiply
-    Divide
-    >>> add
-    Enter two space-seperated numbers: 23 2
-    Addition result: 25
+6. **Executing the application:**
+    ```bash
+    2024-10-29 02:20:26,460 - root - INFO - Logging configured.
+    2024-10-29 02:20:26,462 - root - INFO - Environment variables loaded.
+    MID TERM 
+    Welcome to the Advanced Calculator
+    Enter a command to execute 
+    Add  Subtract  Multiply  Divide  Exit
+    add
+    Enter a:4
+    Enter b:3
+    2024-10-29 02:20:32,267 - root - INFO - Addition Between 4 and 3
+    2024-10-29 02:20:32,267 - root - INFO - Result : 7
+    2024-10-29 02:20:32,268 - root - INFO - Appended calculation to history - Addition
+    Result: 7
+    Enter a command to execute 
+    Add  Subtract  Multiply  Divide  Exit
+    subtract
+    Enter a:10
+    Enter b:4
+    2024-10-29 02:20:42,306 - root - INFO - Subtract Operation Between 10 and 4
+    2024-10-29 02:20:42,306 - root - INFO - Result : 6
+    2024-10-29 02:20:42,307 - root - INFO - Appended calculation to history - Subtract
+    Result: 6
+    Enter a command to execute 
+    Add  Subtract  Multiply  Divide  Exit
+    multiply
+    Enter a:42
+    Enter b:3
+    2024-10-29 02:20:51,506 - root - INFO - Multiplication Operation between 42 and 3
+    2024-10-29 02:20:51,506 - root - INFO - Result : 126
+    2024-10-29 02:20:51,507 - root - INFO - Appended calculation to history - Multiplication
+    Result: 126
+    Enter a command to execute 
+    Add  Subtract  Multiply  Divide  Exit
+    divide
+    Enter a:126
+    Enter b:42
+    2024-10-29 02:21:00,466 - root - INFO - Division Operation Between 126 and 42
+    2024-10-29 02:21:00,467 - root - INFO - Result : 3.0
+    2024-10-29 02:21:00,467 - root - INFO - Appended calculation to history - Division
+    Result: 3.0
+    Enter a command to execute 
+    Add  Subtract  Multiply  Divide  Exit
+    exit
+    2024-10-29 02:21:05,331 - root - INFO - Exiting with saving history.
+    2024-10-29 02:21:05,332 - root - INFO - 
+    [{'Operation': 'Add', 'Operand1': 4, 'Operand2': 3, 'Result': 7}, 
+    {'Operation': 'Subtract', 'Operand1': 10, 'Operand2': 4, 'Result': 6}, 
+    {'Operation': 'Multiply', 'Operand1': 42, 'Operand2': 3, 'Result': 126}, 
+    {'Operation': 'Divide', 'Operand1': 126, 'Operand2': 42, 'Result': 3.0}]
+    2024-10-29 02:21:05,350 - root - INFO - History has been exported to data/calculator_history.csv
+    2024-10-29 02:21:05,351 - root - INFO - History is added with:
+    [{'Operation': 'Add', 'Operand1': 4, 'Operand2': 3, 'Result': 7},
+     {'Operation': 'Subtract', 'Operand1': 10, 'Operand2': 4, 'Result': 6}, 
+     {'Operation': 'Multiply', 'Operand1': 42, 'Operand2': 3, 'Result': 126}, 
+     {'Operation': 'Divide', 'Operand1': 126, 'Operand2': 42, 'Result': 3.0}]
+     Exiting...
     ```
 
 ## Running Tests Locally
@@ -157,10 +208,11 @@ To run the project:
 python main.py
 ```
 
-## History & Data Management
+## History Management
 
 The calculator maintains a history of all operations in a CSV file format. The history is stored in `data/calculator_history.csv`.
 
+## Data Management
 
 When the application is exited, it checks for the existence of a `data` folder. If the folder does not exist, it will be created automatically. The application will then prompt the user to save the calculation history. 
 
@@ -169,7 +221,7 @@ When the application is exited, it checks for the existence of a `data` folder. 
 - If the user chooses to save, the history will be exported to `calculation_history.csv` within the `data` folder.
 - This ensures that all calculations performed during the session are preserved for future reference.
 
-### Example Workflow
+## CSV Handling
 
 1. **Exit Command**: When you run the `exit` command, the application will:
    - Check for the `data` folder.
@@ -178,6 +230,7 @@ When the application is exited, it checks for the existence of a `data` folder. 
 2. **User Decision**:
    - If you respond with `yes`, the application will create the `data` folder (if it doesn't exist) and save the history to `calculation_history.csv`.
    - If you respond with `no`, the history will not be saved.
+
 ## CSV File Structure
 
 The history is stored with the following columns:
@@ -196,13 +249,10 @@ Each row in the CSV contains:
 - **Operand2**: Second number in the calculation
 - **Result**: Final result of the operation
 
-The history can be saved upon exiting the calculator by selecting 'Y' when prompted.
-
-
-## To work on these branches Git commands that can be useful
+## Most commonly used Git commands in the  project
 ### Cloning the repository:
 ```bash
-git clone https://github.com/SamuelSudeepAyyala/Midterm
+git clone https://github.com/vt325456/Midterm
 cd Midterm
 ```
 ### Switching to the required branch:
