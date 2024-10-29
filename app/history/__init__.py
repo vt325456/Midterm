@@ -13,9 +13,7 @@ class HistoryManager:
             "Operand2": operand2,
             "Result": result
         }
-        print(f"History before appending: {self.history}")
         self.history.append(entry)
-        print(f"After entry the history is: {self.history}")
         
 
     def get_history(self):
