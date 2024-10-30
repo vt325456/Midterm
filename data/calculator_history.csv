@@ -113,3 +113,15 @@ Add,4,3,7.0
 Subtract,10,4,6.0
 Multiply,42,3,126.0
 Divide,126,42,3.0
+Add,3,4,7.0
+Subtract,4,3,1.0
+Multiply,4,3,12.0
+Divide,4,2,2.0
+Add,4,3,7.0
+Subtract,4,3,1.0
+Multiply,4,2,8.0
+Divide,4,2,2.0
+Add,4,2,6.0
+Subtract,4,2,2.0
+Multiply,4,2,8.0
+Divide,4,2,2.0

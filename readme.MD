@@ -1,5 +1,7 @@
 # MidTerm - Python Based REPL calculator
 
+[The Video Presentation](https://drive.google.com/file/d/1-3ttbwwZj7A58JzQJQTR9StaOtbAjC2w/view?usp=drive_link)
+
 Welcome to the Python REPL Calculator Project, an extensible calculator showcasing key software engineering principles. Utilizing a modular architecture and the Command Pattern, it supports fundamental arithmetic operations and dynamic plugin integration. The project emphasizes clean code, robust error handling, and detailed logging, while enabling users to track calculations and export history to CSV via Pandas. Designed with scalability in mind, it incorporates CI/CD practices using GitHub Actions and environment variable configuration. A comprehensive test suite built with pytest ensures thorough validation, making this project an excellent resource for both developers and users seeking a versatile calculation tool.
 
 ## Branches
